@@ -6,7 +6,7 @@ import { ISettings } from './app.settings.model'
 export class AppSettings {
   public settings: ISettings
   public title = 'drdaycare'
-  public baseUrl = 'http://84.200.29.248:4100/mobile-portal/api/'
+  public baseUrl = 'http://localhost:8087/'
 
   constructor() {}
 

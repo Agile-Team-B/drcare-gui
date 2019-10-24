@@ -2,6 +2,7 @@ import { Routes, RouterModule } from '@angular/router'
 import { ModuleWithProviders } from '@angular/core'
 import { PagesComponent } from './pages.component'
 import { AuthGuard } from '../auth.guard'
+import { GeneralPractitionerComponent } from './general-practitioner/general-practitioner.component'
 
 export const routes: Routes = [
   {
@@ -13,6 +14,11 @@ export const routes: Routes = [
         path: 'users',
         loadChildren: './users/users.module#UsersModule',
         data: { breadcrumb: 'Users' },
+        // canActivate: [AuthGuard]
+      },
+      {
+        path: 'gp',
+        component: GeneralPractitionerComponent,
         // canActivate: [AuthGuard]
       }
     ]

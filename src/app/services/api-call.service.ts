@@ -128,22 +128,22 @@ export class ApiCallService {
     } else {
       const response = res.body // JSON.parse(res.body)
 
-      if (response.code === 0) {
+      if (res.status == 200) {
         // console.log('res', response)
         if (method !== 'get' && response.description) {
           this.toastrService.success(response.description)
         }
 
-        return response || {}
+        return response || {};
       } else {
-        if (response.code === 30) {
+        if (res.status == 30) {
           // session expired
           setTimeout(() => {
             localStorage.removeItem('currentUser')
             window.location.reload(true)
           }, 1000)
         }
-        throw new Error(response.description)
+        throw new Error(response.description);
       }
     }
   }

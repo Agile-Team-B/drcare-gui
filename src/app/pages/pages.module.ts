@@ -19,6 +19,8 @@ import { HorizontalMenuComponent } from '../theme/components/menu/horizontal-men
 import { BreadcrumbComponent } from '../theme/components/breadcrumb/breadcrumb.component'
 import { BackTopComponent } from '../theme/components/back-top/back-top.component'
 import { UserMenuComponent } from '../theme/components/user-menu/user-menu.component'
+import { GeneralPractitionerComponent } from './general-practitioner/general-practitioner.component'
+import { GeneralPractitionerService } from './general-practitioner/general-practitioner.service'
 // import { BlankComponent } from './blank/blank.component'
 // import { SearchComponent } from './search/search.component'
 
@@ -28,7 +30,8 @@ import { UserMenuComponent } from '../theme/components/user-menu/user-menu.compo
     {
       provide: PERFECT_SCROLLBAR_CONFIG,
       useValue: DEFAULT_PERFECT_SCROLLBAR_CONFIG
-    }
+    },
+    GeneralPractitionerService
   ],
   declarations: [
     PagesComponent,
@@ -39,7 +42,8 @@ import { UserMenuComponent } from '../theme/components/user-menu/user-menu.compo
     HorizontalMenuComponent,
     BreadcrumbComponent,
     BackTopComponent,
-    UserMenuComponent
+    UserMenuComponent,
+    GeneralPractitionerComponent
   ]
 })
 export class PagesModule {}
