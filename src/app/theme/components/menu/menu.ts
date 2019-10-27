@@ -25,8 +25,8 @@ export const verticalMenuItems = [
   ),
   new Menu(
     102,
-    'View User',
-    '/pages/user',
+    'View Users',
+    '/pages/users',
     null,
     'file-text-o',
     null,
@@ -36,7 +36,7 @@ export const verticalMenuItems = [
 
   new Menu(
     200,
-    'General Practiotioner Management',
+    'GP Management',
     null,
     null,
     'file-text-o',
@@ -46,7 +46,7 @@ export const verticalMenuItems = [
   ),
   new Menu(
     201,
-    'Create General Practiotioner',
+    'Create GP',
     '/pages/create-gp',
     null,
     'file-text-o',
@@ -56,7 +56,7 @@ export const verticalMenuItems = [
   ),
   new Menu(
     202,
-    'View General Practiotioners',
+    'View GPs',
     '/pages/gp',
     null,
     'file-text-o',

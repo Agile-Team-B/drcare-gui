@@ -19,7 +19,7 @@ export class AppSettings {
           theme: {
             logoUrl: 'assets/img/default/logo.png',
             logoMiniUrl: 'assets/img/default/logo_sm.png',
-            skinAccentColor: '#FF0000',
+            skinAccentColor: '#ED2636',
             menuOrientation: 'vertical',
             menuType: 'vertical',
             showMenu: true,
