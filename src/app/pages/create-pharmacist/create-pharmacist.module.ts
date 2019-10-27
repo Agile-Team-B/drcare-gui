@@ -3,6 +3,7 @@ import { RouterModule } from '@angular/router'
 import { SharedModule } from '../shared.module'
 
 import { CreatePharmacistComponent } from './create-pharmacist.component'
+import { CreatePharmacistService } from './create-pharmacist.services'
 
 export const routes = [
   { path: '', component: CreatePharmacistComponent, pathMatch: 'full' }
@@ -11,6 +12,6 @@ export const routes = [
 @NgModule({
   imports: [RouterModule.forChild(routes), SharedModule],
   declarations: [CreatePharmacistComponent],
-  providers: []
+  providers: [CreatePharmacistService]
 })
 export class CreatePharmacistModule {}
