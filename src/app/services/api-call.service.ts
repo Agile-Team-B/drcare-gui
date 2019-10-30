@@ -68,7 +68,7 @@ export class ApiCallService {
   public post(path: string, postBody: any, contentType?: any): Observable<any> {
     const actionUrl = this.baseUrl + path,
       headers = new HttpHeaders({
-        'Content-Type': contentType || this.contentType[1]
+        'Content-Type': contentType || this.contentType[0]
       }),
       body = contentType ? JSON.stringify(postBody) : this.formParams(postBody)
     // console.log(body)

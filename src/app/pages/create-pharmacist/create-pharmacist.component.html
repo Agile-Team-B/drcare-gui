@@ -18,7 +18,7 @@
               <label class="control-label required">Name</label>
               <input [formControl]="name" name="name" class="form-control validation-field" type="text">
               <small class="text-danger" *ngIf="createPharmForm.get('name').touched">
-                <span *ngIf="createPharmForm.get('name').hasError('required')">Name is required!}</span>
+                <span *ngIf="createPharmForm.get('name').hasError('required')">Name is required!</span>
               </small>
             </div>
           </div>

@@ -8,6 +8,6 @@ export class CreatePharmacistService {
   constructor(private apiCall: ApiCallService) {}
 
   public createPharmacist: ICreatePharmacist = body => {
-    return this.apiCall.post('user/create', body)
+    return this.apiCall.post('pharmacist/create', body)
   }
 }
