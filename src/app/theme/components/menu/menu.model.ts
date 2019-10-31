@@ -1,12 +1,12 @@
 export class Menu {
   constructor(
-    public id: string,
+    public id: number,
     public title: string,
     public routerLink: string,
     public href: string,
     public icon: string,
     public target: string,
     public hasSubMenu: boolean,
-    public parentID: string
+    public parentID: number
   ) {}
 }

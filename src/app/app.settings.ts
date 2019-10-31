@@ -6,7 +6,7 @@ import { ISettings } from './app.settings.model'
 export class AppSettings {
   public settings: ISettings
   public title = 'drdaycare'
-  public baseUrl = 'http://localhost:8087/'
+  public baseUrl = 'http://localhost:9090/drcare/'
 
   constructor() {}
 
@@ -19,7 +19,7 @@ export class AppSettings {
           theme: {
             logoUrl: 'assets/img/default/logo.png',
             logoMiniUrl: 'assets/img/default/logo_sm.png',
-            skinAccentColor: '#FF0000',
+            skinAccentColor: '#ED2636',
             menuOrientation: 'vertical',
             menuType: 'vertical',
             showMenu: true,

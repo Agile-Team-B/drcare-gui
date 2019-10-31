@@ -3,23 +3,26 @@ import { Router } from '@angular/router'
 import { Location } from '@angular/common'
 
 import { Menu } from './menu.model'
-import { AuthService } from '../../../services/auth.service'
+import { verticalMenuItems } from './menu'
 
 @Injectable()
 export class MenuService {
   constructor(
     private location: Location,
     private renderer2: Renderer2,
-    private router: Router,
-    private authService: AuthService
+    private router: Router
   ) {}
 
+  public getCurrentUserMenu(): Array<Menu> {
+    return verticalMenuItems
+  }
+
   public getVerticalMenuItems(): Array<Menu> {
-    return []
+    return this.getCurrentUserMenu()
   }
 
   public getHorizontalMenuItems(): Array<Menu> {
-    return []
+    return this.getCurrentUserMenu()
   }
 
   public createMenu(menu: Array<Menu>, nativeElement, type) {
@@ -35,7 +38,7 @@ export class MenuService {
     const menu0 = this.renderer2.createElement('div')
     this.renderer2.setAttribute(menu0, 'id', 'menu0')
     menu.forEach(menuItem => {
-      if (menuItem.parentID === '0') {
+      if (menuItem.parentID === 0) {
         const subMenu = this.createVerticalMenuItem(menu, menuItem)
         this.renderer2.appendChild(menu0, subMenu)
       }
@@ -50,7 +53,7 @@ export class MenuService {
     this.renderer2.addClass(ul, 'menu')
     this.renderer2.appendChild(nav, ul)
     menu.forEach(menuItem => {
-      if (menuItem.parentID === '0') {
+      if (menuItem.parentID === 0) {
         const subMenu = this.createHorizontalMenuItem(menu, menuItem)
         this.renderer2.appendChild(ul, subMenu)
       }
@@ -246,7 +249,7 @@ export class MenuService {
 
   public addNewMenuItem(menu: Array<Menu>, newMenuItem, type) {
     menu.push(newMenuItem)
-    if (newMenuItem.parentID !== '0') {
+    if (newMenuItem.parentID !== 0) {
       const parentMenu = menu.filter(item => item.id === newMenuItem.parentID)
       if (parentMenu.length) {
         if (!parentMenu[0].hasSubMenu) {

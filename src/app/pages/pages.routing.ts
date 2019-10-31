@@ -11,14 +11,21 @@ export const routes: Routes = [
     children: [
       { path: '', redirectTo: 'users', pathMatch: 'full' },
       {
+        path: 'create-pharmacist',
+        loadChildren:
+          './create-pharmacist/create-pharmacist.module#CreatePharmacistModule',
+        data: { breadcrumb: 'Create Pharmacist' }
+        // canActivate: [AuthGuard]
+      },
+      {
         path: 'users',
         loadChildren: './users/users.module#UsersModule',
-        data: { breadcrumb: 'Users' },
+        data: { breadcrumb: 'Users' }
         // canActivate: [AuthGuard]
       },
       {
         path: 'gp',
-        component: GeneralPractitionerComponent,
+        component: GeneralPractitionerComponent
         // canActivate: [AuthGuard]
       }
     ]
