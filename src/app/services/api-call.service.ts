@@ -65,16 +65,14 @@ export class ApiCallService {
       .catch(error => this.handleError(error))
   }
 
-  public post(path: string, postBody: any, contentType?: any): Observable<any> {
+  public post(path: string, postBody: any): Observable<any> {
     const actionUrl = this.baseUrl + path,
       headers = new HttpHeaders({
-        'Content-Type': contentType || this.contentType[0]
-      }),
-      body = contentType ? JSON.stringify(postBody) : this.formParams(postBody)
-    // console.log(body)
+        'Content-Type': this.contentType[0]
+      })
 
     return this.http
-      .post(actionUrl, body, {
+      .post(actionUrl, postBody, {
         observe: 'response',
         headers
       })
@@ -121,7 +119,7 @@ export class ApiCallService {
   }
 
   public extractData(res: any, method: string) {
-    // console.log('res', res)
+    console.log('res', res)
 
     if (res.status < 200 || res.status >= 300) {
       throw new Error('This request has failed ' + res.status)
@@ -134,7 +132,7 @@ export class ApiCallService {
           this.toastrService.success(response.description)
         }
 
-        return response || {};
+        return response || {}
       } else {
         if (res.status == 30) {
           // session expired
@@ -143,7 +141,7 @@ export class ApiCallService {
             window.location.reload(true)
           }, 1000)
         }
-        throw new Error(response.description);
+        throw new Error(response.description)
       }
     }
   }

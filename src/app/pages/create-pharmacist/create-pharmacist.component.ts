@@ -37,7 +37,7 @@ export class CreatePharmacistComponent implements OnInit {
         Validators.compose([trimSpacesValidate, Validators.minLength(6)])
       ],
       email: ['', Validators.compose([trimSpacesValidate, emailValidator])],
-      isAdmin: ['']
+      isAdmin: [false]
     })
     Object.keys(this.createPharmForm.controls).map(key => {
       this[key] = this.createPharmForm.controls[key]
