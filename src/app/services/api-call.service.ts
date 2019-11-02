@@ -126,7 +126,7 @@ export class ApiCallService {
     } else {
       const response = res.body // JSON.parse(res.body)
 
-      if (res.status == 200) {
+      if (res.status == 200 || res.status == 201) {
         // console.log('res', response)
         if (method !== 'get' && response.description) {
           this.toastrService.success(response.description)
