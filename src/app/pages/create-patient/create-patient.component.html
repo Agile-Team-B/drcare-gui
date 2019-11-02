@@ -1,0 +1,68 @@
+<div class="row mb-4">
+  <div class="col">
+    <div widget class="card border-0 box-shadow">
+      <div class="card-header transparent border-0 text-muted">
+        <h5>Create Patient</h5>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div widget class="card border-0 box-shadow">
+  <div class="box box-primary">
+    <div class="box-body">
+      <form [formGroup]="createForm" (ngSubmit)="onSubmit(createForm.value)">
+        <div class="card-body">
+          <div class="row">
+            <div class="form-group col-xl-4 col-sm-6 col-12">
+              <label class="control-label required">Name</label>
+              <input [formControl]="name" name="name" class="form-control validation-field" type="text">
+              <small class="text-danger" *ngIf="createForm.get('name').touched">
+                <span *ngIf="createForm.get('name').hasError('required')">Name is required!</span>
+              </small>
+            </div>
+          </div>
+          <div class="row">
+            <div class="form-group col-xl-4 col-sm-6 col-12">
+              <label class="control-label required">Username</label>
+              <input [formControl]="username" name="username" class="form-control validation-field" type="text">
+              <small class="text-danger" *ngIf="createForm.get('username').touched">
+                <span *ngIf="createForm.get('username').hasError('required')">Username is required!</span>
+              </small>
+            </div>
+          </div>
+          <div class="row">
+            <div class="form-group col-xl-4 col-sm-6 col-12">
+              <label class="control-label required">Password</label>
+              <input [formControl]="password" name="password" class="form-control validation-field" type="password">
+              <small class="text-danger" *ngIf="createForm.get('password').touched">
+                <span *ngIf="createForm.get('password').hasError('required')">Password is required!</span>
+                <span *ngIf="createForm.get('password').hasError('minlength')">Password cannot be less than 6 chars!</span>
+              </small>
+            </div>
+          </div>
+          <div class="row">
+            <div class="form-group col-xl-4 col-sm-6 col-12">
+              <label class="control-label required">Email</label>
+              <input [formControl]="email" class="form-control validation-field" type="email">
+              <small class="text-danger" *ngIf="createForm.get('email').touched">
+                <span *ngIf="createForm.get('email').hasError('required')">Email is required!</span>
+                <span *ngIf="createForm.get('email').hasError('invalidEmail')">Invalid Email!</span>
+              </small>
+            </div>
+          </div>
+          <div class="row">
+            <div class="form-group col-xl-4 col-sm-6 col-12">
+              <label class="db">Is Admin</label>
+              <input [formControl]="isAdmin" type="checkbox" />
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="submit" [disabled]="!createForm.valid || (loaderService.isLoading | async)"
+            class="btn btn-primary">Submit</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

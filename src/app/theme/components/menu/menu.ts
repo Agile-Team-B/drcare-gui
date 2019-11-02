@@ -84,5 +84,27 @@ export const verticalMenuItems = [
     null,
     false,
     300
+  ),
+
+  new Menu(
+    400,
+    'Patient Management',
+    null,
+    null,
+    'file-text-o',
+    null,
+    true,
+    0
+  ),
+  new Menu(
+    401,
+    'Create Patient',
+    '/pages/create-patient',
+    null,
+    'file-text-o',
+    null,
+    false,
+    400
   )
+
 ]
