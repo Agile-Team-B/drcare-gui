@@ -16,12 +16,12 @@ import { trimSpacesValidate, emailValidator } from '../../validators'
   styleUrls: ['./create-gp.component.css']
 })
 export class CreateGPComponent implements OnInit {
-  public createForm: FormGroup;
-  public name: AbstractControl;
-  public username: AbstractControl;
-  public password: AbstractControl;
-  public email: AbstractControl;
-  public isAdmin: AbstractControl;
+  public createForm: FormGroup
+  public name: AbstractControl
+  public username: AbstractControl
+  public password: AbstractControl
+  public email: AbstractControl
+  public isAdmin: AbstractControl
 
   constructor(
     fb: FormBuilder,
@@ -37,12 +37,12 @@ export class CreateGPComponent implements OnInit {
         Validators.compose([trimSpacesValidate, Validators.minLength(6)])
       ],
       email: ['', Validators.compose([trimSpacesValidate, emailValidator])],
-      isAdmin: [''],
+      isAdmin: [false],
       userType: 'GP'
-    });
+    })
     Object.keys(this.createForm.controls).map(key => {
-      this[key] = this.createForm.controls[key];
-    });
+      this[key] = this.createForm.controls[key]
+    })
   }
 
   ngOnInit() {}
@@ -50,9 +50,9 @@ export class CreateGPComponent implements OnInit {
   public onSubmit(values: any): void {
     if (this.createForm.valid) {
       this.createGPService.createGP(values).subscribe(response => {
-        console.log(JSON.stringify(response));
-        this.toastr.success('General Practitioner created successfully!');
-      });
+        console.log(JSON.stringify(response))
+        this.toastr.success('General Practitioner created successfully!')
+      })
     }
   }
 }
