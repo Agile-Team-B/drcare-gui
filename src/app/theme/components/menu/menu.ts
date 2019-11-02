@@ -16,7 +16,7 @@ export const verticalMenuItems = [
   new Menu(
     101,
     'Create User',
-    '/pages/create-user',
+    '/pages/users/create',
     null,
     'file-text-o',
     null,

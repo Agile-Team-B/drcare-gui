@@ -18,6 +18,13 @@ export const routes: Routes = [
         // canActivate: [AuthGuard]
       },
       {
+        path: 'create-gp',
+        loadChildren:
+          './create-gp/create-gp.module#CreateGPModule',
+        data: { breadcrumb: 'Create GP' }
+        // canActivate: [AuthGuard]
+      },
+      {
         path: 'users',
         loadChildren: './users/users.module#UsersModule',
         data: { breadcrumb: 'Users' }
