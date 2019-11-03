@@ -25,6 +25,13 @@ export const routes: Routes = [
         // canActivate: [AuthGuard]
       },
       {
+        path: 'create-patient',
+        loadChildren:
+          './create-patient/create-patient.module#CreatePatientModule',
+        data: { breadcrumb: 'Create Patient' }
+        // canActivate: [AuthGuard]
+      },
+      {
         path: 'users',
         loadChildren: './users/users.module#UsersModule',
         data: { breadcrumb: 'Users' }
