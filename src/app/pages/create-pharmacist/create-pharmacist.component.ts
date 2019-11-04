@@ -37,7 +37,8 @@ export class CreatePharmacistComponent implements OnInit {
         Validators.compose([trimSpacesValidate, Validators.minLength(6)])
       ],
       email: ['', Validators.compose([trimSpacesValidate, emailValidator])],
-      isAdmin: [false]
+      isAdmin: [false],
+      userType: ['PHARMACIST']
     })
     Object.keys(this.createPharmForm.controls).map(key => {
       this[key] = this.createPharmForm.controls[key]
@@ -50,7 +51,7 @@ export class CreatePharmacistComponent implements OnInit {
     if (this.createPharmForm.valid) {
       this.createPharmService.createPharmacist(values).subscribe(response => {
         console.log(response)
-        this.toastr.success('User created successfully!')
+        this.toastr.success('Pharmacist created successfully!')
       })
     }
   }
