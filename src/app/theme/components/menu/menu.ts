@@ -34,16 +34,7 @@ export const verticalMenuItems = [
     100
   ),
 
-  new Menu(
-    200,
-    'GP Management',
-    null,
-    null,
-    'file-text-o',
-    null,
-    true,
-    0
-  ),
+  new Menu(200, 'GP Management', null, null, 'file-text-o', null, true, 0),
   new Menu(
     201,
     'Create GP',
@@ -54,16 +45,7 @@ export const verticalMenuItems = [
     false,
     200
   ),
-  new Menu(
-    202,
-    'View GPs',
-    '/pages/gp',
-    null,
-    'file-text-o',
-    null,
-    false,
-    200
-  ),
+  new Menu(202, 'View GPs', '/pages/gp', null, 'file-text-o', null, false, 200),
 
   new Menu(
     300,
@@ -85,17 +67,18 @@ export const verticalMenuItems = [
     false,
     300
   ),
-
   new Menu(
-    400,
-    'Patient Management',
-    null,
+    302,
+    'View Pharmacists',
+    '/pages/pharmacists',
     null,
     'file-text-o',
     null,
-    true,
-    0
+    false,
+    300
   ),
+
+  new Menu(400, 'Patient Management', null, null, 'file-text-o', null, true, 0),
   new Menu(
     401,
     'Create Patient',
@@ -106,5 +89,4 @@ export const verticalMenuItems = [
     false,
     400
   )
-
 ]

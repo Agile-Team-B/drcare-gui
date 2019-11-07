@@ -18,9 +18,14 @@ export const routes: Routes = [
         // canActivate: [AuthGuard]
       },
       {
+        path: 'pharmacists',
+        loadChildren: './pharmacists/pharmacists.module#PharmacistsModule',
+        data: { breadcrumb: 'Pharmacists' }
+        // canActivate: [AuthGuard]
+      },
+      {
         path: 'create-gp',
-        loadChildren:
-          './create-gp/create-gp.module#CreateGPModule',
+        loadChildren: './create-gp/create-gp.module#CreateGPModule',
         data: { breadcrumb: 'Create GP' }
         // canActivate: [AuthGuard]
       },
