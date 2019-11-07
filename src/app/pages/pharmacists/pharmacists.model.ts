@@ -7,10 +7,14 @@ interface IPharmacist {
   username: string
 }
 
-interface IGetPharmacistsBody {
-  username?: string
+export interface IGetPharmacists {
+  (): Observable<IPharmacist[]>
 }
 
-export interface IGetPharmacists {
-  (body: IGetPharmacistsBody): Observable<IPharmacist[]>
+interface ISearchPharmacistsBody {
+  username: string
+}
+
+export interface ISearchPharmacists {
+  (body: ISearchPharmacistsBody): Observable<IPharmacist[]>
 }
