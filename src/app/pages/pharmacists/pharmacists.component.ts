@@ -24,7 +24,7 @@ import { GridModel } from '../shared/grid/grid.model'
 })
 export class PharmacistsComponent implements OnInit {
   public searchForm: FormGroup
-  public userNameSearch: AbstractControl
+  public username: AbstractControl
 
   @ViewChild('actionTmpl', null)
   actionTmpl: TemplateRef<any>
@@ -56,7 +56,7 @@ export class PharmacistsComponent implements OnInit {
     public loaderService: LoaderService
   ) {
     this.searchForm = fb.group({
-      userNameSearch: ['']
+      username: ['']
     })
     Object.keys(this.searchForm.controls).map(key => {
       this[key] = this.searchForm.controls[key]
@@ -80,18 +80,19 @@ export class PharmacistsComponent implements OnInit {
     console.log('Yet to be implemented...')
   }
 
-  userRequestBody(that: any) {
-    const { userNameSearch } = that
+  searchPharmacists(values): void {
+    console.log('body', values)
 
-    return {
-      username: userNameSearch.value || ''
-    }
+    this.pharmacistsService.searchPharmacists(values).subscribe(data => {
+      const settings = { ...this.settings }
+
+      settings.rows = data
+      this.settings = { ...settings }
+    })
   }
 
   loadPharmacists(gridModel: GridModel = this.settings): void {
-    const body = this.userRequestBody(this)
-
-    this.pharmacistsService.getPharmacists(body).subscribe(data => {
+    this.pharmacistsService.getPharmacists().subscribe(data => {
       const settings = { ...gridModel },
         colLen = settings.columns.length
 
