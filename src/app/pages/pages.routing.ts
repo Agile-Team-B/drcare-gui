@@ -38,6 +38,12 @@ export const routes: Routes = [
         // canActivate: [AuthGuard]
       },
       {
+        path: 'patients',
+        loadChildren: './patients/patients.module#PatientsModule',
+        data: { breadcrumb: 'Patients' }
+        // canActivate: [AuthGuard]
+      },
+      {
         path: 'users',
         loadChildren: './users/users.module#UsersModule',
         data: { breadcrumb: 'Users' }

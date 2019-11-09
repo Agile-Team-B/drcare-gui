@@ -38,7 +38,7 @@ export class CreatePatientComponent implements OnInit {
       ],
       email: ['', Validators.compose([trimSpacesValidate, emailValidator])],
       isAdmin: [false],
-      userType: 'OTHER'
+      userType: ['PATIENT']
     })
     Object.keys(this.createForm.controls).map(key => {
       this[key] = this.createForm.controls[key]

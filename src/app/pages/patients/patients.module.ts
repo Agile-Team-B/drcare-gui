@@ -2,17 +2,17 @@ import { NgModule } from '@angular/core'
 import { RouterModule } from '@angular/router'
 import { SharedModule } from '../shared.module'
 
-import { PharmacistsComponent } from './pharmacists.component'
+import { PatientsComponent } from './patients.component'
 
-import { PharmacistsService } from './pharmacists.services'
+import { PatientsService } from './patients.services'
 
 export const routes = [
-  { path: '', component: PharmacistsComponent, pathMatch: 'full' }
+  { path: '', component: PatientsComponent, pathMatch: 'full' }
 ]
 
 @NgModule({
   imports: [RouterModule.forChild(routes), SharedModule],
-  declarations: [PharmacistsComponent],
-  providers: [PharmacistsService]
+  declarations: [PatientsComponent],
+  providers: [PatientsService]
 })
-export class PharmacistsModule {}
+export class PatientsModule {}

@@ -5,7 +5,7 @@ import {
   ViewChild,
   ViewEncapsulation
 } from '@angular/core'
-import { PharmacistsService } from './pharmacists.services'
+import { PatientsService } from './patients.services'
 import { LoaderService } from '../../services/loader.service'
 import {
   FormGroup,
@@ -17,14 +17,13 @@ import {
 import { GridModel } from '../shared/grid/grid.model'
 
 @Component({
-  selector: 'app-user',
-  templateUrl: './pharmacists.component.html',
-  styleUrls: ['./pharmacists.component.scss'],
+  selector: 'app-patient',
+  templateUrl: './patients.component.html',
+  styleUrls: ['./patients.component.scss'],
   encapsulation: ViewEncapsulation.None
 })
-export class PharmacistsComponent implements OnInit {
+export class PatientsComponent implements OnInit {
   public searchForm: FormGroup
-  public username: AbstractControl
 
   @ViewChild('actionTmpl', null)
   actionTmpl: TemplateRef<any>
@@ -52,7 +51,7 @@ export class PharmacistsComponent implements OnInit {
 
   constructor(
     fb: FormBuilder,
-    private pharmacistsService: PharmacistsService,
+    private patientsService: PatientsService,
     public loaderService: LoaderService
   ) {
     this.searchForm = fb.group({
@@ -65,7 +64,7 @@ export class PharmacistsComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.loadPharmacists()
+    this.loadPatients()
   }
 
   checkGridDataLoad(): boolean {
@@ -73,17 +72,17 @@ export class PharmacistsComponent implements OnInit {
   }
 
   syncGridData(gridModel: GridModel): void {
-    this.loadPharmacists(gridModel)
+    this.loadPatients(gridModel)
   }
 
   edit() {
     console.log('Yet to be implemented...')
   }
 
-  searchPharmacists(values): void {
+  searchPatients(values): void {
     console.log('body', values)
 
-    this.pharmacistsService.searchPharmacists(values).subscribe(data => {
+    this.patientsService.searchPatients(values).subscribe(data => {
       const settings = { ...this.settings }
 
       settings.rows = data
@@ -91,8 +90,8 @@ export class PharmacistsComponent implements OnInit {
     })
   }
 
-  loadPharmacists(gridModel: GridModel = this.settings): void {
-    this.pharmacistsService.getPharmacists().subscribe(data => {
+  loadPatients(gridModel: GridModel = this.settings): void {
+    this.patientsService.getPatients().subscribe(data => {
       const settings = { ...gridModel },
         colLen = settings.columns.length
 

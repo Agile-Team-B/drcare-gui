@@ -1,20 +1,20 @@
 import { Observable } from 'rxjs/Observable'
 
-interface IPharmacist {
+interface IPatient {
   id: number
   email: string
   name: string
   username: string
 }
 
-export interface IGetPharmacists {
-  (): Observable<IPharmacist[]>
+export interface IGetPatients {
+  (): Observable<IPatient[]>
 }
 
-interface ISearchPharmacistsBody {
+interface ISearchPatientsBody {
   username: string
 }
 
-export interface ISearchPharmacists {
-  (body: ISearchPharmacistsBody): Observable<IPharmacist[]>
+export interface ISearchPatients {
+  (body: ISearchPatientsBody): Observable<IPatient[]>
 }

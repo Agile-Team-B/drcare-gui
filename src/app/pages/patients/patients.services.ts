@@ -1,17 +1,17 @@
 import { Injectable } from '@angular/core'
 
 import { ApiCallService } from '../../services/api-call.service'
-import { IGetPharmacists, ISearchPharmacists } from './pharmacists.model'
+import { IGetPatients, ISearchPatients } from './patients.model'
 
 @Injectable()
-export class PharmacistsService {
+export class PatientsService {
   constructor(private apiCall: ApiCallService) {}
 
-  getPharmacists: IGetPharmacists = () => {
-    return this.apiCall.get('pharmacist/list')
+  getPatients: IGetPatients = () => {
+    return this.apiCall.get('patient/list')
   }
 
-  searchPharmacists: ISearchPharmacists = body => {
-    return this.apiCall.get(`pharmacist/search/${body.username}`)
+  searchPatients: ISearchPatients = body => {
+    return this.apiCall.get(`patient/search/${body.username}`)
   }
 }
