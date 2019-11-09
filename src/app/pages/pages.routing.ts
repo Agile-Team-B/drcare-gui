@@ -3,6 +3,7 @@ import { ModuleWithProviders } from '@angular/core'
 import { PagesComponent } from './pages.component'
 import { AuthGuard } from '../auth.guard'
 import { GeneralPractitionerComponent } from './general-practitioner/general-practitioner.component'
+import { OtherMedicalStaffComponent } from './other-medical-staff/other-medical-staff.component'
 
 export const routes: Routes = [
   {
@@ -45,6 +46,12 @@ export const routes: Routes = [
       {
         path: 'gp',
         component: GeneralPractitionerComponent
+        // canActivate: [AuthGuard]
+      },
+      {
+        path: 'other',
+        loadChildren: './other-medical-staff/other-medical-staff.module#OtherMedicalStaffModule',
+        data: {breadcrumb: 'Other Medical Staff'}
         // canActivate: [AuthGuard]
       }
     ]
