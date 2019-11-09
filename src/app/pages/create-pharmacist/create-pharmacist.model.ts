@@ -8,6 +8,7 @@ interface ICreatePharmacistBody {
   password: string
   email: string
   isAdmin: boolean
+  userType: string
 }
 
 export interface ICreatePharmacist {

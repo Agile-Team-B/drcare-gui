@@ -5,18 +5,18 @@ import {
   FormBuilder,
   Validators
 } from '@angular/forms'
-import { CreatePharmacistService } from './create-pharmacist.services'
+import { CreatePatientService } from './create-patient.services'
 import { LoaderService } from '../../services/loader.service'
 import { ToastrService } from 'ngx-toastr'
 import { trimSpacesValidate, emailValidator } from '../../validators'
 
 @Component({
-  selector: 'app-create-pharmacist',
-  templateUrl: './create-pharmacist.component.html',
-  styleUrls: ['./create-pharmacist.component.css']
+  selector: 'app-create-patient',
+  templateUrl: './create-patient.component.html',
+  styleUrls: ['./create-patient.component.css']
 })
-export class CreatePharmacistComponent implements OnInit {
-  public createPharmForm: FormGroup
+export class CreatePatientComponent implements OnInit {
+  public createForm: FormGroup
   public name: AbstractControl
   public username: AbstractControl
   public password: AbstractControl
@@ -25,11 +25,11 @@ export class CreatePharmacistComponent implements OnInit {
 
   constructor(
     fb: FormBuilder,
-    private createPharmService: CreatePharmacistService,
+    private createPatientService: CreatePatientService,
     private toastr: ToastrService,
     public loaderService: LoaderService
   ) {
-    this.createPharmForm = fb.group({
+    this.createForm = fb.group({
       name: ['', [trimSpacesValidate]],
       username: ['', [trimSpacesValidate]],
       password: [
@@ -38,20 +38,20 @@ export class CreatePharmacistComponent implements OnInit {
       ],
       email: ['', Validators.compose([trimSpacesValidate, emailValidator])],
       isAdmin: [false],
-      userType: ['PHARMACIST']
+      userType: 'OTHER'
     })
-    Object.keys(this.createPharmForm.controls).map(key => {
-      this[key] = this.createPharmForm.controls[key]
+    Object.keys(this.createForm.controls).map(key => {
+      this[key] = this.createForm.controls[key]
     })
   }
 
   ngOnInit() {}
 
   public onSubmit(values: any): void {
-    if (this.createPharmForm.valid) {
-      this.createPharmService.createPharmacist(values).subscribe(response => {
-        console.log(response)
-        this.toastr.success('Pharmacist created successfully!')
+    if (this.createForm.valid) {
+      this.createPatientService.createPatient(values).subscribe(response => {
+        console.log(JSON.stringify(response))
+        this.toastr.success('Patient created successfully!')
       })
     }
   }

@@ -4,7 +4,7 @@
   </p>
   <select
     *ngIf="gridModel.rows.length > 0"
-    class="form-control w-10 dib absolute top-0 mt-1 ml-1"
+    class="form-control w-10 dib top-0 mt-1 mb-1 ml-1"
     name="pageSize"
     (change)="setPageSize($event)"
   >
@@ -22,14 +22,14 @@
     [columns]="gridModel.columns"
     [rowHeight]="'auto'"
     [columnMode]="'flex'"
-    [headerHeight]="40"
-    [footerHeight]="40"
+    [headerHeight]="50"
+    [footerHeight]="50"
     [count]="gridModel.totalElements"
     [offset]="gridModel.currentPageNumber"
     [messages]="gridModel.message"
     [limit]="gridModel.pageSize"
     (page)="loadPage($event)"
-    [externalPaging]="true"
+    [externalPaging]="false"
   >
   </ngx-datatable>
 </div>

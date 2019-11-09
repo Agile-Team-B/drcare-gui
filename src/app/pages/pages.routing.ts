@@ -3,6 +3,7 @@ import { ModuleWithProviders } from '@angular/core'
 import { PagesComponent } from './pages.component'
 import { AuthGuard } from '../auth.guard'
 import { GeneralPractitionerComponent } from './general-practitioner/general-practitioner.component'
+import { OtherMedicalStaffComponent } from './other-medical-staff/other-medical-staff.component'
 
 export const routes: Routes = [
   {
@@ -18,10 +19,22 @@ export const routes: Routes = [
         // canActivate: [AuthGuard]
       },
       {
+        path: 'pharmacists',
+        loadChildren: './pharmacists/pharmacists.module#PharmacistsModule',
+        data: { breadcrumb: 'Pharmacists' }
+        // canActivate: [AuthGuard]
+      },
+      {
         path: 'create-gp',
-        loadChildren:
-          './create-gp/create-gp.module#CreateGPModule',
+        loadChildren: './create-gp/create-gp.module#CreateGPModule',
         data: { breadcrumb: 'Create GP' }
+        // canActivate: [AuthGuard]
+      },
+      {
+        path: 'create-patient',
+        loadChildren:
+          './create-patient/create-patient.module#CreatePatientModule',
+        data: { breadcrumb: 'Create Patient' }
         // canActivate: [AuthGuard]
       },
       {
@@ -33,6 +46,12 @@ export const routes: Routes = [
       {
         path: 'gp',
         component: GeneralPractitionerComponent
+        // canActivate: [AuthGuard]
+      },
+      {
+        path: 'other',
+        loadChildren: './other-medical-staff/other-medical-staff.module#OtherMedicalStaffModule',
+        data: {breadcrumb: 'Other Medical Staff'}
         // canActivate: [AuthGuard]
       }
     ]

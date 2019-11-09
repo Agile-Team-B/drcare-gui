@@ -21,6 +21,7 @@ import { BackTopComponent } from '../theme/components/back-top/back-top.componen
 import { UserMenuComponent } from '../theme/components/user-menu/user-menu.component'
 import { GeneralPractitionerComponent } from './general-practitioner/general-practitioner.component'
 import { GeneralPractitionerService } from './general-practitioner/general-practitioner.service'
+import { OtherMedicalStaffComponent } from './other-medical-staff/other-medical-staff.component'
 // import { BlankComponent } from './blank/blank.component'
 // import { SearchComponent } from './search/search.component'
 
