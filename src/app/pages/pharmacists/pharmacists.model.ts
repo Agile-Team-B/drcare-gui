@@ -18,3 +18,17 @@ interface ISearchPharmacistsBody {
 export interface ISearchPharmacists {
   (body: ISearchPharmacistsBody): Observable<IPharmacist[]>
 }
+
+interface IUpdatePharmacistBody {
+  id: number
+  name: string
+  username: string
+  email: string
+  password: string
+  isAdmin: boolean
+  userType: string
+}
+
+export interface IUpdatePharmacist {
+  (body: IUpdatePharmacistBody): Observable<any>
+}

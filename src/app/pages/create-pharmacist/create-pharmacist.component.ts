@@ -13,15 +13,10 @@ import { trimSpacesValidate, emailValidator } from '../../validators'
 @Component({
   selector: 'app-create-pharmacist',
   templateUrl: './create-pharmacist.component.html',
-  styleUrls: ['./create-pharmacist.component.css']
+  styleUrls: ['./create-pharmacist.component.scss']
 })
 export class CreatePharmacistComponent implements OnInit {
   public createPharmForm: FormGroup
-  public name: AbstractControl
-  public username: AbstractControl
-  public password: AbstractControl
-  public email: AbstractControl
-  public isAdmin: AbstractControl
 
   constructor(
     fb: FormBuilder,

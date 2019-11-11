@@ -5,16 +5,13 @@ import {
   ViewChild,
   ViewEncapsulation
 } from '@angular/core'
+import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap'
 import { PharmacistsService } from './pharmacists.services'
 import { LoaderService } from '../../services/loader.service'
-import {
-  FormGroup,
-  FormControl,
-  AbstractControl,
-  FormBuilder
-} from '@angular/forms'
+import { FormGroup, Validators, FormBuilder } from '@angular/forms'
 
 import { GridModel } from '../shared/grid/grid.model'
+import { trimSpacesValidate, emailValidator } from '../../validators'
 
 @Component({
   selector: 'app-user',
@@ -23,12 +20,18 @@ import { GridModel } from '../shared/grid/grid.model'
   encapsulation: ViewEncapsulation.None
 })
 export class PharmacistsComponent implements OnInit {
+  public modalRef: NgbModalRef
   public searchForm: FormGroup
-  public username: AbstractControl
+  public editPharmForm: FormGroup
 
+  @ViewChild('content', null)
+  private content
+  @ViewChild('isAdminTmpl', null)
+  isAdminTmpl: TemplateRef<any>
   @ViewChild('actionTmpl', null)
   actionTmpl: TemplateRef<any>
 
+  selectedUserId: number
   settings: GridModel
   columns: Array<any> = [
     {
@@ -44,6 +47,11 @@ export class PharmacistsComponent implements OnInit {
       prop: 'username'
     },
     {
+      name: 'Admin',
+      prop: 'isAdmin',
+      cellTemplate: null
+    },
+    {
       name: 'Action',
       prop: 'id',
       cellTemplate: null
@@ -52,16 +60,52 @@ export class PharmacistsComponent implements OnInit {
 
   constructor(
     fb: FormBuilder,
+    private modalService: NgbModal,
     private pharmacistsService: PharmacistsService,
     public loaderService: LoaderService
   ) {
     this.searchForm = fb.group({
-      username: ['']
+      usernameSearch: ['']
     })
     Object.keys(this.searchForm.controls).map(key => {
       this[key] = this.searchForm.controls[key]
     })
     this.settings = new GridModel(this.columns, 10)
+    this.editPharmForm = fb.group({
+      name: ['', [trimSpacesValidate]],
+      username: ['', [trimSpacesValidate]],
+      email: ['', Validators.compose([trimSpacesValidate, emailValidator])],
+      password: [''],
+      isAdmin: [false],
+      userType: ['PHARMACIST']
+    })
+    Object.keys(this.editPharmForm.controls).map(key => {
+      this[key] = this.editPharmForm.controls[key]
+    })
+  }
+
+  closeModal(): void {
+    this.modalRef.close()
+  }
+
+  edit(row): void {
+    this.selectedUserId = row.id
+    this.modalService.open(this.content, { size: 'lg' })
+
+    for (const key in row) {
+      if (this.editPharmForm.controls[key]) {
+        this.editPharmForm.controls[key].setValue(row[key])
+      }
+    }
+  }
+
+  submitEditForm(values: any): void {
+    const body = { id: this.selectedUserId, ...values }
+    console.log('val: ', body)
+
+    this.pharmacistsService.updatePharmacist(body).subscribe(data => {
+      console.log('resData', data)
+    })
   }
 
   ngOnInit() {
@@ -76,14 +120,11 @@ export class PharmacistsComponent implements OnInit {
     this.loadPharmacists(gridModel)
   }
 
-  edit() {
-    console.log('Yet to be implemented...')
-  }
-
   searchPharmacists(values): void {
-    console.log('body', values)
+    const body = { username: values.usernameSearch }
+    console.log('body', body)
 
-    this.pharmacistsService.searchPharmacists(values).subscribe(data => {
+    this.pharmacistsService.searchPharmacists(body).subscribe(data => {
       const settings = { ...this.settings }
 
       settings.rows = data
@@ -97,6 +138,7 @@ export class PharmacistsComponent implements OnInit {
         colLen = settings.columns.length
 
       settings.rows = data
+      settings.columns[colLen - 2].cellTemplate = this.isAdminTmpl
       settings.columns[colLen - 1].cellTemplate = this.actionTmpl
       this.settings = { ...settings }
     })

@@ -73,25 +73,23 @@ export class ApiCallService {
 
     return this.http
       .post(actionUrl, postBody, {
-        observe: 'response',
-        headers
+        headers,
+        observe: 'response'
       })
       .map(response => this.extractData(response, 'post'))
       .catch(error => this.handleError(error))
   }
 
-  public put(path: string, putBody: any, contentType?: any): Observable<any> {
+  public put(path: string, putBody: any): Observable<any> {
     const actionUrl = this.baseUrl + path,
       headers = new HttpHeaders({
-        'Content-Type': contentType || this.contentType[1]
-      }),
-      body = contentType ? JSON.stringify(putBody) : this.formParams(putBody)
-    // console.log(body)
+        'Content-Type': this.contentType[0]
+      })
 
     return this.http
-      .put(actionUrl, body, {
-        observe: 'response',
-        headers
+      .put(actionUrl, putBody, {
+        headers,
+        observe: 'response'
       })
       .map(response => this.extractData(response, 'put'))
       .catch(error => this.handleError(error))
