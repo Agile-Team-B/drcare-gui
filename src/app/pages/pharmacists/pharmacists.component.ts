@@ -75,7 +75,6 @@ export class PharmacistsComponent implements OnInit {
       name: ['', [trimSpacesValidate]],
       username: ['', [trimSpacesValidate]],
       email: ['', Validators.compose([trimSpacesValidate, emailValidator])],
-      password: [''],
       isAdmin: [false],
       userType: ['PHARMACIST']
     })
@@ -85,7 +84,8 @@ export class PharmacistsComponent implements OnInit {
   }
 
   closeModal(): void {
-    this.modalRef.close()
+    this.modalService.dismissAll();
+    this.loadPharmacists();
   }
 
   edit(row): void {
@@ -104,7 +104,8 @@ export class PharmacistsComponent implements OnInit {
     console.log('val: ', body)
 
     this.pharmacistsService.updatePharmacist(body).subscribe(data => {
-      console.log('resData', data)
+      console.log('resData', data);
+      this.closeModal();
     })
   }
 
@@ -132,6 +133,7 @@ export class PharmacistsComponent implements OnInit {
     })
   }
 
+  
   loadPharmacists(gridModel: GridModel = this.settings): void {
     this.pharmacistsService.getPharmacists().subscribe(data => {
       const settings = { ...gridModel },

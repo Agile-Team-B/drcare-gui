@@ -10,6 +10,6 @@ export class GeneralPractitionerService {
 
 
   fetchAllGP() {
-      return this.apiCaller.get('general-practitioner/fetch-all');
+      return this.apiCaller.get('general-practitioner/list');
   }
 }
