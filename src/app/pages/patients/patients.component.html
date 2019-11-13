@@ -1,0 +1,48 @@
+<div class="row mb-4">
+  <div class="col">
+    <div widget class="card border-0 box-shadow">
+      <div class="card-header transparent border-0 text-muted pb-0">
+        <h5 class="mb-0 dib">Search</h5>
+      </div>
+      <hr />
+      <div class="card-body widget-body pt-0">
+        <form [formGroup]="searchForm" (ngSubmit)="searchPatients(searchForm.value)" class="row">
+          <div class="form-group col-xl-3 col-sm-6 col-12">
+            <div class="row">
+              <div class="col-md-12">
+                <label class="control-label">Username</label>
+              </div>
+              <div class="col-md-12">
+                <input type="text" class="form-control" name="username" [formControl]="username" />
+              </div>
+            </div>
+          </div>
+          <div class="form-group col-xl-3 col-sm-6 col-12">
+            <div class="row">
+              <div class="col-md-12 hidden-xs-down">
+                <label class="control-label">&nbsp;</label>
+              </div>
+              <div class="col-md-12">
+                <button class='btn btn-primary pointer' [disabled]="loaderService.isLoading | async" type="submit">
+                  <i class="fa fa-search"></i>&nbsp; Search</button>
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div widget class="card border-0 box-shadow">
+  <div class="box box-primary">
+    <div class="box-body">
+      <div class="box-body">
+        <app-grid class="w-100" [gridModelInput]="settings" (onGridSync)="syncGridData($event)"></app-grid>
+        <ng-template #actionTmpl let-row="row" let-value="value">
+          <button type="button" class="btn btn-sm btn-outline-gray" (click)="edit(row)">Edit</button>
+        </ng-template>
+      </div>
+    </div>
+  </div>
+</div>

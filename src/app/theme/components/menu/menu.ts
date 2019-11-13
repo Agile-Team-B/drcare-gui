@@ -89,6 +89,16 @@ export const verticalMenuItems = [
     false,
     400
   ),
+  new Menu(
+    402,
+    'View Patients',
+    '/pages/patients',
+    null,
+    'file-text-o',
+    null,
+    false,
+    400
+  ),
   new Menu(500, 'Other Medical Staff', null, null, 'file-text-o', null, true, 0),
   new Menu(
     501,
