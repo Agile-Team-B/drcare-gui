@@ -1,7 +1,5 @@
 import { Observable } from 'rxjs/Observable'
 
-interface ICreatePharmacistReturn {}
-
 interface ICreatePharmacistBody {
   name: string
   username: string
@@ -12,5 +10,5 @@ interface ICreatePharmacistBody {
 }
 
 export interface ICreatePharmacist {
-  (body: ICreatePharmacistBody): Observable<ICreatePharmacistReturn>
+  (body: ICreatePharmacistBody): Observable<any>
 }

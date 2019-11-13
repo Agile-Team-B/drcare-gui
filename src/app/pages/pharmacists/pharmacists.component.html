@@ -13,7 +13,7 @@
                 <label class="control-label">Username</label>
               </div>
               <div class="col-md-12">
-                <input type="text" class="form-control" name="username" [formControl]="username" />
+                <input type="text" class="form-control" [formControl]="usernameSearch" />
               </div>
             </div>
           </div>
@@ -39,6 +39,10 @@
     <div class="box-body">
       <div class="box-body">
         <app-grid class="w-100" [gridModelInput]="settings" (onGridSync)="syncGridData($event)"></app-grid>
+        <ng-template #isAdminTmpl let-value="value">
+          <span class="badge" [ngClass]="value === true ? 'badge-success' : 'badge-danger'">{{value === true ?
+            'Yes' : 'No'}}</span>
+        </ng-template>
         <ng-template #actionTmpl let-row="row" let-value="value">
           <button type="button" class="btn btn-sm btn-outline-gray" (click)="edit(row)">Edit</button>
         </ng-template>
@@ -46,3 +50,47 @@
     </div>
   </div>
 </div>
+
+<ng-template #content let-d='dismiss' let-c='close'>
+  <div class="modal-header">
+    <h4 class="modal-title ttc" id="modal-basic-title">Edit Pharmacist</h4>
+    <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <form [formGroup]="editPharmForm" class="ph2" (ngSubmit)="submitEditForm(editPharmForm.value)">
+    <div class="modal-body">
+      <div class="row">
+        <div class="form-group col-xl-4 col-sm-6 col-12">
+          <label class="control-label required">Name</label>
+          <input [formControl]="name" class="form-control validation-field" type="text">
+          <small class="text-danger" *ngIf="editPharmForm.get('name').touched">
+            <span *ngIf="editPharmForm.get('name').hasError('required')">Name is required!</span>
+          </small>
+        </div>
+        <div class="form-group col-xl-4 col-sm-6 col-12">
+          <label class="control-label required">Username</label>
+          <input [formControl]="username" class="form-control validation-field" type="text">
+          <small class="text-danger" *ngIf="editPharmForm.get('username').touched">
+            <span *ngIf="editPharmForm.get('username').hasError('required')">Username is required!</span>
+          </small>
+        </div>
+        <div class="form-group col-xl-4 col-sm-6 col-12">
+          <label class="control-label required">Email</label>
+          <input [formControl]="email" class="form-control validation-field" type="email">
+          <small class="text-danger" *ngIf="editPharmForm.get('email').touched">
+            <span *ngIf="editPharmForm.get('email').hasError('required')">Email is required!</span>
+          </small>
+        </div>
+        <div class="form-group col-xl-4 col-sm-6 col-12">
+          <label class="control-label">Is Admin</label>
+          <input [formControl]="isAdmin" class="db" type="checkbox">
+        </div>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button type="submit" [disabled]="(loaderService.isLoading | async) || !editPharmForm.valid"
+        class="btn btn-primary">Submit</button>
+    </div>
+  </form>
+</ng-template>

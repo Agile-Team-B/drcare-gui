@@ -1,7 +1,12 @@
 import { Injectable } from '@angular/core'
 
 import { ApiCallService } from '../../services/api-call.service'
-import { IGetPharmacists, ISearchPharmacists } from './pharmacists.model'
+import {
+  IGetPharmacists,
+  ISearchPharmacists,
+  IUpdatePharmacist
+} from './pharmacists.model'
+import { isNullOrUndefined } from 'util'
 
 @Injectable()
 export class PharmacistsService {
@@ -12,6 +17,14 @@ export class PharmacistsService {
   }
 
   searchPharmacists: ISearchPharmacists = body => {
-    return this.apiCall.get(`pharmacist/search/${body.username}`)
+    if (isNullOrUndefined(body.username) || body.username === '') {
+      return this.apiCall.get('pharmacist/list');
+    }
+
+    return this.apiCall.get(`pharmacist/search/${body.username}`);
+  }
+
+  updatePharmacist: IUpdatePharmacist = body => {
+    return this.apiCall.put('pharmacist/update', body)
   }
 }
