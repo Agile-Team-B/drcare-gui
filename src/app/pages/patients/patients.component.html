@@ -46,3 +46,48 @@
     </div>
   </div>
 </div>
+
+
+<ng-template #content let-d='dismiss' let-c='close'>
+  <div class="modal-header">
+    <h4 class="modal-title ttc" id="modal-basic-title">Edit Patient</h4>
+    <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <form [formGroup]="editPatientForm" class="ph2" (ngSubmit)="submitEditForm(editPatientForm.value)">
+    <div class="modal-body">
+      <div class="row">
+        <div class="form-group col-xl-4 col-sm-6 col-12">
+          <label class="control-label required">Name</label>
+          <input [formControl]="name" class="form-control validation-field" type="text">
+          <small class="text-danger" *ngIf="editPatientForm.get('name').touched">
+            <span *ngIf="editPatientForm.get('name').hasError('required')">Name is required!</span>
+          </small>
+        </div>
+        <div class="form-group col-xl-4 col-sm-6 col-12">
+          <label class="control-label required">Username</label>
+          <input [formControl]="username" class="form-control validation-field" type="text">
+          <small class="text-danger" *ngIf="editPatientForm.get('username').touched">
+            <span *ngIf="editPatientForm.get('username').hasError('required')">Username is required!</span>
+          </small>
+        </div>
+        <div class="form-group col-xl-4 col-sm-6 col-12">
+          <label class="control-label required">Email</label>
+          <input [formControl]="email" class="form-control validation-field" type="email">
+          <small class="text-danger" *ngIf="editPatientForm.get('email').touched">
+            <span *ngIf="editPatientForm.get('email').hasError('required')">Email is required!</span>
+          </small>
+        </div>
+        <div class="form-group col-xl-4 col-sm-6 col-12">
+          <label class="control-label">Is Admin</label>
+          <input [formControl]="isAdmin" class="db" type="checkbox">
+        </div>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button type="submit" [disabled]="(loaderService.isLoading | async) || !editPatientForm.valid"
+              class="btn btn-primary">Submit</button>
+    </div>
+  </form>
+</ng-template>

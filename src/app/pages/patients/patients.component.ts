@@ -15,6 +15,7 @@ import {
 } from '@angular/forms'
 
 import { GridModel } from '../shared/grid/grid.model'
+import { NgbModalRef, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-patient',
@@ -23,11 +24,17 @@ import { GridModel } from '../shared/grid/grid.model'
   encapsulation: ViewEncapsulation.None
 })
 export class PatientsComponent implements OnInit {
+  public modalRef: NgbModalRef
   public searchForm: FormGroup
+  public editPatientForm: FormGroup
 
+  @ViewChild('content', null)
+  private content
   @ViewChild('actionTmpl', null)
   actionTmpl: TemplateRef<any>
 
+
+  selectedUserId: number
   settings: GridModel
   columns: Array<any> = [
     {
@@ -51,6 +58,7 @@ export class PatientsComponent implements OnInit {
 
   constructor(
     fb: FormBuilder,
+    private modalService: NgbModal,
     private patientsService: PatientsService,
     public loaderService: LoaderService
   ) {
@@ -75,8 +83,31 @@ export class PatientsComponent implements OnInit {
     this.loadPatients(gridModel)
   }
 
-  edit() {
-    console.log('Yet to be implemented...')
+  closeModal(): void {
+    this.modalService.dismissAll();
+    this.loadPatients();
+  }
+
+
+  edit(row): void {
+    this.selectedUserId = row.id
+    this.modalService.open(this.content, { size: 'lg' })
+
+    for (const key in row) {
+      if (this.editPatientForm.controls[key]) {
+        this.editPatientForm.controls[key].setValue(row[key])
+      }
+    }
+  }
+
+  submitEditForm(values: any): void {
+    const body = { id: this.selectedUserId, ...values }
+    console.log('val: ', body)
+
+    this.patientsService.updatePatient(body).subscribe(data => {
+      console.log('resData', data);
+      this.closeModal();
+    })
   }
 
   searchPatients(values): void {

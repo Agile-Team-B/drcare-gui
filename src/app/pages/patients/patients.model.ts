@@ -18,3 +18,18 @@ interface ISearchPatientsBody {
 export interface ISearchPatients {
   (body: ISearchPatientsBody): Observable<IPatient[]>
 }
+
+interface IUpdatePatientBody {
+  id: number
+  name: string
+  username: string
+  email: string
+  password: string
+  isAdmin: boolean
+  userType: string
+}
+
+export interface IUpdatePatient {
+  (body: IUpdatePatientBody): Observable<any>
+}
+
