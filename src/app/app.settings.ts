@@ -29,8 +29,8 @@ export class AppSettings {
             showSideChat: false,
             sideChatIsHoverable: false,
             skinType: this.title,
-            mainLogoUrl: 'assets/img/switch.png',
-            mainLogoInvUrl: 'assets/img/switch_inv.png'
+            mainLogoUrl: 'assets/img/default/logo.png',
+            mainLogoInvUrl: 'assets/img/default/logo.png'
           }
         }
 

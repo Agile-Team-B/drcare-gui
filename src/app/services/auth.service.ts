@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core'
 import { JwtHelperService } from '@auth0/angular-jwt'
 
 import { ApiCallService } from './api-call.service'
-// import { ILogin, LOGIN_QUERY } from '../pages/login/login.model'
+import { ILogin } from '../pages/login/login.model'
 // import {
 //   IResetPassword,
 //   RESET_PASSWORD_QUERY
@@ -23,9 +23,6 @@ export class AuthService {
       ? JSON.parse(localStorage.getItem('currentUser'))
       : null
 
-  public isFirstLogin = (): boolean | null =>
-    this.getCurrentUser() ? this.getCurrentUser().firstLogin : null
-
   public getCurrentUserToken = (): string | null =>
     this.getCurrentUser() ? this.getCurrentUser().token : null
 
@@ -43,9 +40,9 @@ export class AuthService {
   //     .map(res => res.resetPassword)
   // }
 
-  // public login: ILogin = body => {
-  //   return this.apiCall.post(LOGIN_QUERY, body).map(res => res.login)
-  // }
+  public login: ILogin = body => {
+    return this.apiCall.post("user/login", body).map(res => res.login)
+  }
 
   public logout = (): void => {
     window.location.reload()

@@ -1,67 +1,67 @@
-import { Routes, RouterModule } from '@angular/router'
-import { ModuleWithProviders } from '@angular/core'
-import { PagesComponent } from './pages.component'
-import { AuthGuard } from '../auth.guard'
-import { GeneralPractitionerComponent } from './general-practitioner/general-practitioner.component'
-import { OtherMedicalStaffComponent } from './other-medical-staff/other-medical-staff.component'
+import { Routes, RouterModule } from "@angular/router";
+import { ModuleWithProviders } from "@angular/core";
+import { PagesComponent } from "./pages.component";
+import { AuthGuard } from "../auth.guard";
+import { GeneralPractitionerComponent } from "./general-practitioner/general-practitioner.component";
 
 export const routes: Routes = [
   {
-    path: '',
+    path: "",
     component: PagesComponent,
     children: [
-      { path: '', redirectTo: 'users', pathMatch: 'full' },
+      { path: "", redirectTo: "users", pathMatch: "full" },
       {
-        path: 'create-pharmacist',
+        path: "create-pharmacist",
         loadChildren:
-          './create-pharmacist/create-pharmacist.module#CreatePharmacistModule',
-        data: { breadcrumb: 'Create Pharmacist' }
+          "./create-pharmacist/create-pharmacist.module#CreatePharmacistModule",
+        data: { breadcrumb: "Create Pharmacist" }
         // canActivate: [AuthGuard]
       },
       {
-        path: 'pharmacists',
-        loadChildren: './pharmacists/pharmacists.module#PharmacistsModule',
-        data: { breadcrumb: 'Pharmacists' }
+        path: "pharmacists",
+        loadChildren: "./pharmacists/pharmacists.module#PharmacistsModule",
+        data: { breadcrumb: "Pharmacists" }
         // canActivate: [AuthGuard]
       },
       {
-        path: 'create-gp',
-        loadChildren: './create-gp/create-gp.module#CreateGPModule',
-        data: { breadcrumb: 'Create GP' }
+        path: "create-gp",
+        loadChildren: "./create-gp/create-gp.module#CreateGPModule",
+        data: { breadcrumb: "Create GP" }
         // canActivate: [AuthGuard]
       },
       {
-        path: 'create-patient',
+        path: "create-patient",
         loadChildren:
-          './create-patient/create-patient.module#CreatePatientModule',
-        data: { breadcrumb: 'Create Patient' }
+          "./create-patient/create-patient.module#CreatePatientModule",
+        data: { breadcrumb: "Create Patient" }
         // canActivate: [AuthGuard]
       },
       {
-        path: 'patients',
-        loadChildren: './patients/patients.module#PatientsModule',
-        data: { breadcrumb: 'Patients' }
+        path: "patients",
+        loadChildren: "./patients/patients.module#PatientsModule",
+        data: { breadcrumb: "Patients" }
         // canActivate: [AuthGuard]
       },
       {
-        path: 'users',
-        loadChildren: './users/users.module#UsersModule',
-        data: { breadcrumb: 'Users' }
+        path: "users",
+        loadChildren: "./users/users.module#UsersModule",
+        data: { breadcrumb: "Users" }
         // canActivate: [AuthGuard]
       },
       {
-        path: 'gp',
+        path: "gp",
         component: GeneralPractitionerComponent
         // canActivate: [AuthGuard]
       },
       {
-        path: 'other',
-        loadChildren: './other-medical-staff/other-medical-staff.module#OtherMedicalStaffModule',
-        data: {breadcrumb: 'Other Medical Staff'}
+        path: "other",
+        loadChildren:
+          "./other-medical-staff/other-medical-staff.module#OtherMedicalStaffModule",
+        data: { breadcrumb: "Other Medical Staff" }
         // canActivate: [AuthGuard]
       }
     ]
   }
-]
+];
 
-export const routing: ModuleWithProviders = RouterModule.forChild(routes)
+export const routing: ModuleWithProviders = RouterModule.forChild(routes);
