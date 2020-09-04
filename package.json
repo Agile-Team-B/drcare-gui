@@ -34,7 +34,7 @@
     "moment": "^2.24.0",
     "ngx-perfect-scrollbar": "^8.0.0",
     "ngx-toastr": "^11.1.2",
-    "node-sass": "^4.9.3",
+    "node-sass": "^4.13.1",
     "rxjs": "^6.4.0",
     "rxjs-compat": "^6.5.3",
     "tachyons": "^4.11.1",
